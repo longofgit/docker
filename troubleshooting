@@ -1,0 +1,32 @@
+docker run -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo –name db postgres:9.4
+
+ docker run -it -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo –name dbnew  -v `pwd`/db-data:/var/lib/postgresql -p 5432:5432 postgres:9.4
+
+ docker run -it --rm -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name dbnew  -v `pwd`/db-data:/var/lib/postgresql -p 5432:5432 postgres:9.4
+
+/root/bak/data
+
+docker run -it --rm -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo --name dbnew  -v /root/bak/data:/var/lib/postgresql/data -p 5432:5432 postgres:9.4
+
+"/mnt/extra-addons": {},
+            "/var/lib/odoo": {}
+
+docker run -v /path/to/addons:/mnt/extra-addons -p 8069:8069 –name odoo –link db:db -t odoo
+
+/root/bak/addons
+
+
+docker run -it --rm -v /root/bak/addons/extra-addons:/mnt/extra-addons -v /root/bak/addons/odoo:/var/lib/odoo -p 8069:8069 --name odoo –-link db:db odoo
+
+docker run -d -v /root/bak/addons/extra-addons:/mnt/extra-addons -v /root/bak/addons/odoo:/var/lib/odoo -p 8069:8069 --name odoo2  
+
+docker cp 7a873bd648ed:/mnt/extra-addons ./bak
+docker cp 7a873bd648ed:/var/lib/odoo ./bak
+
+docker run -d -v /root/bak/extra-addons:/mnt/extra-addons -v /root/bak/odoo:/var/lib/odoo -p 8069:8069 --name odoonew --link dbnew:db odoo
+
+/
+
+docker run -it -d -e POSTGRES_USER=odoo -e POSTGRES_PASSWORD=odoo  –name dblcl  -v /path/to/db:/var/lib/postgresql -p 5432:5432 postgres:9.4
+
+docker run -v /path/to/addons:/mnt/extra-addons -p 8069:8069 –name odoolcl –link dblcl:dblcl -t odoolcl
